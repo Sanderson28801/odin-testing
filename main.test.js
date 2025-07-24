@@ -2,6 +2,7 @@ import { capitalize } from "./capitalize.js";
 import { reverseString } from "./reverseStr.js";
 import { calculator } from "./calculator.js";
 import { caesarCipher } from "./caesar.js";
+import { analyzeArr } from "./analyzeArr.js";
 //console.log(capitalize("hi"));
 
 describe("Capitalize Function", () => {
@@ -72,4 +73,21 @@ describe("test caesar cipher", () => {
   test("test wrapping around cipher", () => {
     expect(caesarCipher("xyzXYZ", 3)).toBe("abcABC");
   });
+});
+
+describe("test analyzeArr function", () => {
+  test("test on empty array", () => {
+    expect(analyzeArr([])).toEqual([null, null, null, 0]);
+  });
+  test("test on many different arrays", () => {
+    let testCases = [
+      { input: [1], expected: [1, 1, 1, 1] },
+      { input: [1, 3, 4, 5], expected: [13 / 4, 1, 5, 4] },
+      { input: [1, 3, 7], expected: [11 / 3, 1, 7, 3] },
+    ];
+    testCases.forEach((el) =>
+      expect(analyzeArr(el.input)).toEqual(el.expected)
+    );
+  });
+
 });
